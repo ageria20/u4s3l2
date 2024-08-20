@@ -21,6 +21,8 @@ public class Evento {
     private String description;
 
     @Column (nullable = false)
+    @Enumerated(EnumType.STRING) // <-- Di default gli enum vengono trattati come numeri interi nella tabella del db
+    // Se voglio che essi invece vengano rappresentati come testo devo usare @Enumerated(EnumType.STRING)
     private EventType eventType;
 
     @Column (nullable = false)
@@ -75,5 +77,17 @@ public class Evento {
 
     public void setMaxPersons(int maxPersons) {
         this.maxPersons = maxPersons;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", eventDate=" + eventDate +
+                ", description='" + description + '\'' +
+                ", eventType=" + eventType +
+                ", maxPersons=" + maxPersons +
+                '}';
     }
 }
